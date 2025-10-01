@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de Produtos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+      line-height: 1.7;
+      color: #2c3e50;
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      padding: 30px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(46, 125, 50, 0.15);
+    }
+
+    /* Cabeçalho Otimizado */
+    .header {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      padding: 35px 50px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      animation: pulse 15s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    .header-logo {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-logo img {
+      height: 80px;
+      width: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 12px 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .header-logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .header-text {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-text h1 {
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .header-text p {
+      font-size: 17px;
+      margin: 0;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .content {
+      padding: 60px 50px;
+    }
+
+    /* Introdução */
+    .intro {
+      margin-bottom: 70px;
+      padding: 40px;
+      background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+      border-left: 6px solid #2e7d32;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(46, 125, 50, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro::after {
+      content: '🌱';
+      position: absolute;
+      right: 30px;
+      bottom: 20px;
+      font-size: 80px;
+      opacity: 0.1;
+    }
+
+    .intro h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #1b5e20;
+      position: relative;
+    }
+
+    .intro p {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: #424242;
+      line-height: 1.8;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro strong {
+      color: #2e7d32;
+      font-weight: 600;
+    }
+
+    /* Categorias */
+    .category {
+      margin-bottom: 70px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    .category h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #1b5e20;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .category h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #2e7d32 0%, #66bb6a 100%);
+      border-radius: 2px;
+    }
+
+    .category-content {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .category-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .category-image:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(46, 125, 50, 0.2);
+    }
+
+    .category-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+    }
+
+    /* Produtos em cards modernos */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .products a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-item {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+      padding: 20px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #2c3e50;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-left: 4px solid #4caf50;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(46, 125, 50, 0.05) 0%, transparent 100%);
+      transition: width 0.3s ease;
+    }
+
+    .product-item:hover {
+      transform: translateX(8px);
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+      background: white;
+      border-left-color: #2e7d32;
+    }
+
+    .product-item:hover::before {
+      width: 100%;
+    }
+
+    /* Rodapé */
+    .footer {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+      padding: 50px 40px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .footer p {
+      position: relative;
+      z-index: 1;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .footer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .footer strong {
+      color: #ffeb3b;
+      font-weight: 600;
+    }
+
+    /* Responsivo */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      
+      .container {
+        box-shadow: none;
+      }
+
+      .category-image:hover,
+      .product-item:hover {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 968px) {
+      .category-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .content {
+        padding: 40px 30px;
+      }
+
+      .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+        gap: 20px;
+      }
+
+      .header-text h1 {
+        font-size: 32px;
+      }
+
+      .intro h2 {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        padding: 25px 20px;
+      }
+
+      .header-logo img {
+        height: 60px;
+      }
+
+      .header-text h1 {
+        font-size: 26px;
+      }
+
+      .header-text p {
+        font-size: 15px;
+      }
+
+      .content {
+        padding: 30px 20px;
+      }
+
+      .intro {
+        padding: 25px;
+      }
+
+      .category h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Cabeçalho -->
+    <div class="header">
+      <div class="header-logo">
+        <img src="https://agrofertilizantes.com.br/wp-content/uploads/2022/05/favicon.png" alt="Logo Agrofertilizantes">
+      </div>
+      <div class="header-text">
+        <h1>Nossos Produtos</h1>
+        <p>Qualidade, confiança e garantia para o agronegócio</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Introdução -->
+      <div class="intro">
+        <h2>Soluções completas para o agronegócio</h2>
+        <p>
+          Na Agrofertilizantes, acreditamos que cada safra merece o melhor investimento. 
+          Por isso, trabalhamos com um portfólio selecionado de fertilizantes e insumos de 
+          alta qualidade, que garantem <strong>mais produtividade, confiança e rentabilidade</strong> 
+          para o seu negócio.
+        </p>
+        <p>
+          Nosso compromisso é oferecer <strong>produtos com procedência garantida</strong>, 
+          dentro dos mais altos padrões exigidos pelo mercado, sempre aliados ao suporte 
+          e à seriedade que você já conhece.
+        </p>
+        <p>
+          Confira a seguir nossas principais linhas de produtos desenvolvidas para impulsionar 
+          os resultados no campo.
+        </p>
+      </div>
+
+      <!-- NITROGENADOS -->
+      <div class="category">
+        <h2>Nitrogenados</h2>
+        <div class="category-content">
+          <div class="category-image">
+            <img src="https://agrofertilizantes.com.br/wp-content/uploads/2025/09/1-1-1.webp" alt="Nitrogenados">
+          </div>
+          <div class="products">
+            <a href="sulfato.html"><div class="product-item">Sulfato</div></a>
+            <a href="ureia.html"><div class="product-item">Uréia</div></a>
+            <a href="nitrato.html"><div class="product-item">Nitrato</div></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOSFATADOS -->
+      <div class="category">
+        <h2>Fosfatados</h2>
+        <div class="category-content">
+          <div class="category-image">
+            <img src="https://agrofertilizantes.com.br/wp-content/uploads/2025/09/2-5.webp" alt="Fosfatados">
+          </div>
+          <div class="products">
+            <a href="map1050.html"><div class="product-item">MAP 10-50</div></a>
+            <a href="map1152.html"><div class="product-item">MAP 11-52</div></a>
+            <a href="np1045.html"><div class="product-item">NP 10-45</div></a>
+            <a href="np1144.html"><div class="product-item">NP 11-44</div></a>
+            <a href="dap.html"><div class="product-item">DAP</div></a>
+            <a href="fosfatonaturalreativo.html"><div class="product-item">Fosfato Natural Reativo</div></a>
+            <a href="superfosfatotriplo.html"><div class="product-item">Super Fosfato Triplo</div></a>
+            <a href="supersimples.html"><div class="product-item">Super Simples</div></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- POTÁSSICOS -->
+      <div class="category">
+        <h2>Potássicos</h2>
+        <div class="category-content">
+          <div class="category-image">
+            <img src="https://agrofertilizantes.com.br/wp-content/uploads/2025/09/3-3.webp" alt="Potássicos">
+          </div>
+          <div class="products">
+            <a href="cloretodepotassio.html"><div class="product-item">Cloreto de Potássio</div></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NPK -->
+      <div class="category">
+        <h2>NPS / NPK no grão</h2>
+        <div class="category-content">
+          <div class="category-image">
+            <img src="https://agrofertilizantes.com.br/wp-content/uploads/2025/09/4-2.webp" alt="NPK">
+          </div>
+          <div class="products">
+            <a href="151515.html"><div class="product-item">15-15-15 + 10S</div></a>
+            <a href="8040.html"><div class="product-item">08-40 + 5S</div></a>
+            <a href="1240.html"><div class="product-item">12-40 + 5S + 1Z</div></a>
+            <a href="270606.html"><div class="product-item">27-06-06</div></a>
+            <a href="102626.html"><div class="product-item">10-26-26</div></a>        
+          </div>
+        </div>
+      </div>
+
+      <!-- ESPECIAIS -->
+      <div class="category">
+        <h2>Produtos Especiais</h2>
+        <div class="category-content">
+          <div class="category-image">
+            <img src="https://agrofertilizantes.com.br/wp-content/uploads/2025/09/5-1.webp" alt="Produtos Especiais">
+          </div>
+          <div class="products">
+            <a href="mappurificado.html"><div class="product-item">MAP Purificado</div></a>
+            <a href="enxofredebetonita.html"><div class="product-item">Enxofre de Bentonita</div></a>
+            <a href="enxofreelementar99.html"><div class="product-item">Enxofre Elementar 99%</div></a>
+            <a href="boroulexita.html"><div class="product-item">Boro Ulexita</div></a>
+            <a href="zinco10.html"><div class="product-item">Zinco 10%</div></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PECUÁRIA -->
+      <div class="category">
+        <h2>Linha Pecuária</h2>
+        <div class="category-content">
+          <div class="category-image">
+            <img src="https://agrofertilizantes.com.br/wp-content/uploads/2025/09/6-2.webp" alt="Linha Pecuária">
+          </div>
+          <div class="products">
+            <a href="fosfatobicalcio.html"><div class="product-item">Fosfato Bicálcico</div></a>
+            <a href="fosfatomonocalcio.html"><div class="product-item">Fosfato Monocálcico</div></a>
+            <a href="ureiapecuaria.html"><div class="product-item">Uréia Pecuária</div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+      <p><strong>📞 Entre em contato e solicite sua cotação agora mesmo:</strong> 11 95920-6000</p>
+      <p>© 2025 Agrofertilizantes | Todos os direitos reservados</p>
+    </div>
+  </div>
+
+</body>
+</html>

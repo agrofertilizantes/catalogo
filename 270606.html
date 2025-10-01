@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>27-06-06</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      color: #333333;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: 0 15px 40px rgba(46, 125, 50, 0.15);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #333333;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    .description {
+      font-size: 1.05rem;
+      color: #424242;
+      text-align: left;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .features {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .features h2 {
+      text-align: left;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 25px;
+    }
+
+    .features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #f9fff9;
+      border-left: 4px solid #66bb6a;
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333333;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #424242;
+    }
+
+    .btn-voltar {
+      display: block;
+      margin: 40px auto 0;
+      text-align: center;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      max-width: 250px;
+    }
+
+    .btn-voltar:hover {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .features {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>27-06-06</h1>
+    <p class="subtitle">Fertilizante Nitrogenado Balanceado com Fósforo e Potássio</p>
+    <p class="description">
+      O 27-06-06 é um fertilizante formulado com alta concentração de nitrogênio, aliado a fósforo e potássio em quantidades equilibradas. Indicado para fases de crescimento vegetativo, promove desenvolvimento vigoroso, maior produtividade e equilíbrio nutricional para diferentes culturas.
+    </p>
+
+    <div class="features">
+      <h2>Principais Características</h2>
+      <div class="features-list">
+        <div class="feature-card">
+          <h3>Alto Teor de Nitrogênio</h3>
+          <p>Estimula crescimento vegetativo rápido e uniforme.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Equilíbrio Nutricional</h3>
+          <p>Fornece N, P e K em proporções adequadas para diversas culturas.</p>
+        </div>        
+        <div class="feature-card">
+          <h3>Melhora a Produtividade</h3>
+          <p>Garante maior rendimento e qualidade da produção.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Versatilidade</h3>
+          <p>Indicado para diferentes estágios de cultivo e tipos de solo.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Granulometria Uniforme</h3>
+          <p>Facilita aplicação e absorção eficiente dos nutrientes.</p>
+        </div>        
+      </div>
+    </div>
+
+    <a href="index.html" class="btn-voltar">⬅ Voltar ao Início</a>
+  </div>
+</body>
+</html>
+
